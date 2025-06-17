@@ -28,6 +28,6 @@ const dayjs = require('dayjs');
 
 
 Cypress.Commands.add('printTerminal', (message) => {
-    const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss');
+    const timestamp = dayjs().format('HH:mm:ss.SSS');
     cy.task('logToTerminal', `[INFO  ${timestamp}]\t${message}`).then(() => {})
 });

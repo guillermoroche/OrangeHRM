@@ -6,9 +6,13 @@ class LoginPage {
         passwordInput: () => cy.get('input[name="password"]'),
         loginButton: () => cy.get('button[type="submit"]'),
         errorMessage: () => cy.get('div.orangehrm-login-error'),
-        emptyUsernameFieldError: () => cy.get('form.oxd-form div.oxd-form-row:contains("Username")'),
-        emptyPasswordFieldError: () => cy.get('form.oxd-form div.oxd-form-row:contains("Password")'),
+        emptyUsernameFieldError: (field) => cy.get(`form.oxd-form div.oxd-form-row:contains("${field}")`),
     };
+    fields = {
+        username: "Username",
+        password: "Password",
+    }
+
     login({username = 'Admin', password = 'admin123'}) {
         cy.printTerminal(`Trying to logging in with username: ${username} and password: ${password}`);
         if(username) {
@@ -26,16 +30,9 @@ class LoginPage {
     }
 
     checkEmptyFieldError(field, message) {
-        if(field === 'username') {
-            cy.log('entering empty username field');
-            this.elements.emptyUsernameFieldError().should('be.visible').and('contain.text', message);
-            cy.printTerminal('Username field is empty, error message is displayed: ' + message);
-        }
-        if(field === 'password') {
-            cy.log('entering empty password field');
-            this.elements.emptyPasswordFieldError().should('be.visible').and('contain.text', message);
-            cy.printTerminal('Password field is empty, error message is displayed: ' + message);
-        }
+        this.elements.emptyUsernameFieldError(field).should('be.visible')
+            .and('contain.text', message);
+        cy.printTerminal(`Login failed, empty field error for ${field} is displayed: ` + message);
     }
 }
 
