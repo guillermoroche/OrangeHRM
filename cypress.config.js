@@ -1,5 +1,4 @@
 const { defineConfig } = require("cypress");
-const chalk = require('chalk').default;
 
 module.exports = defineConfig({
   e2e: {
@@ -12,7 +11,7 @@ module.exports = defineConfig({
       on('task', {
         logToTerminal(message) {
           // Log the message to the terminal
-          config.env.logEnabled && console.log(chalk.greenBright(message));
+          config.env.logEnabled && console.log(message);
           return null;
         }
       });
