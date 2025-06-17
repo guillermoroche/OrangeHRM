@@ -1,4 +1,3 @@
-import { th } from "@faker-js/faker";
 
 class AddEmployeeForm {
     elements = {
@@ -52,7 +51,7 @@ class AddEmployeeForm {
         
         this.elements.employeeSaveButton().click();
         this.#waitForSaveCompletion();
-        cy.printTerminal(`Employee ${employeeData.firstName} ${employeeData.lastName} has been created successfully`);
+        cy.printTerminal(`Employee ${employeeData.firstName} ${employeeData.middleName} ${employeeData.lastName} has been created successfully`);
 
     }
 

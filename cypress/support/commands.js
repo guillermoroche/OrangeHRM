@@ -31,3 +31,8 @@ Cypress.Commands.add('printTerminal', (message) => {
     const timestamp = dayjs().format('HH:mm:ss.SSS');
     cy.task('logToTerminal', `[INFO  ${timestamp}]\t${message}`).then(() => {})
 });
+
+Cypress.Commands.add('printTestTitle', (testTitle) => {
+    const timestamp = dayjs().format('HH:mm:ss.SSS');
+    cy.task('logToTerminal', `[STARTING NEW TEST CASE  ${timestamp}]\t${testTitle}`).then(() => {})
+});
