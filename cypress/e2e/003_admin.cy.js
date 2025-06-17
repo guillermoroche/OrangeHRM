@@ -101,9 +101,23 @@ describe('Admin test cases\n', () => {
     commonmenupage.logout();
     loginpage.login({
       username: employee.username,
-      password: employee.password
+      password: employee.password 
     });
     loginpage.checkUnsuccessfulLogin(LoginErrorMessagesjson.accountDisabled);
+  });
+
+  it('Employee can be created without login credentials, and then login credentials can be added later', () => {
+    let employeeData = generateRandomEmployee({
+      createLogin: false,
+      loginEnabled: false
+    });
+    commonmenupage.clickMenuItem(commonmenupage.menuItems.pim);
+    viewemployees.clickAddEmployeeButton();
+    addemployeeform.fillFormFields(employeeData);
+    // Now add login credentials
+    commonmenupage.clickMenuItem(commonmenupage.menuItems.admin);
+    ViewSistemUsers.clickAddUserButton();
+    CreateUserForm.fillFormFields(employeeData);
   });
 
 });

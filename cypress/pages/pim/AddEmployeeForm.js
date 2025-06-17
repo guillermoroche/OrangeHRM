@@ -16,7 +16,6 @@ class AddEmployeeForm {
 
     };
     fillFormFields(employeeData, expectedFail = false) {
-        cy.printTerminal('Filling in basic employee form fields');
         if (employeeData.firstName) {
             this.elements.employeeFirstName().type(employeeData.firstName);
         }
@@ -59,7 +58,6 @@ class AddEmployeeForm {
 
     #waitForEmployeeIdCheck() {
         const randomId = Math.random().toString(36).substring(2, 10);
-        cy.printTerminal('Waiting for Employee ID check to complete');
         cy.intercept('GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/core/validation/unique**').as(`uniqueCheck_${randomId}`);
         cy.wait(`@uniqueCheck_${randomId}`).then((result) => {
             if (result.response && result.response.body && result.response.body.data && result.response.body.data.valid === true) {

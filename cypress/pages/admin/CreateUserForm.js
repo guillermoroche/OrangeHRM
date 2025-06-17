@@ -43,7 +43,6 @@ class CreateUserForm {
 
     #waitForEmployeeNameCheck() {
         const randomId = Math.random().toString(36).substring(2, 10);
-        cy.printTerminal('Waiting for Employee Name check to complete');
         cy.intercept('GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees?name**').as(`uniqueCheck_${randomId}`);
         cy.wait(`@uniqueCheck_${randomId}`).then((result) => {
             if (
@@ -52,7 +51,7 @@ class CreateUserForm {
                 Array.isArray(result.response.body.data) &&
                 result.response.body.data.length > 0
             ) {
-                cy.printTerminal('Employee Name data is not empty');
+                
             } else {
                 throw new Error('Employee Name data is empty');
             }
@@ -61,11 +60,10 @@ class CreateUserForm {
 
     #waitForSaveCompletion() {
         const randomId = Math.random().toString(36).substring(2, 10);
-        cy.printTerminal('Waiting for Save completion');
         cy.intercept('POST', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/users').as(`saveCompletion_${randomId}`);
         cy.wait(`@saveCompletion_${randomId}`).then((result) => {
             if (result.response.statusCode === 200) {
-                cy.printTerminal('User created successfully');
+                
             } else {
                 throw new Error('Failed to create user');
             }
