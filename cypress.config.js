@@ -1,4 +1,6 @@
 const { defineConfig } = require("cypress");
+const { allureCypress } = require("allure-cypress/reporter");
+
 
 module.exports = defineConfig({
   e2e: {
@@ -7,20 +9,18 @@ module.exports = defineConfig({
     viewportWidth: 1920,
     watchForFileChanges: false,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      allureCypress(on, config, {
+        resultsDir: "allure-results",
+      });
       on('task', {
         logToTerminal(message) {
-          // Log the message to the terminal
           config.env.logEnabled && console.log(message);
           return null;
         }
       });
-      
-
     },
     env: {
-      // Custom environment variables can be defined here
       logEnabled: true,
     },
-  },
+  }
 });
