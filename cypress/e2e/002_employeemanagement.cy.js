@@ -13,7 +13,7 @@ describe('Employee Management Test cases\n', () => {
     cy.visit('/index.php/auth/login');
     loginpage.login({});
   });
-  it('Employee management page is accessible and loads', () => {
+  it('Employee management page is accessible and loads',{ tags: ['@severity=critical'] }, () => {
     commonmenupage.clickMenuItem(commonmenupage.menuItems.pim);
     viewemployees.checkEmployeesPageLoads();
   });
