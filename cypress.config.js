@@ -1,8 +1,7 @@
-import { defineConfig } from "cypress";
-import chalk from 'chalk';
+const { defineConfig } = require("cypress");
 
-export default defineConfig({
-  projectId: '3nnfiv',
+
+module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://opensource-demo.orangehrmlive.com/web/',
     viewportHeight: 1080,
@@ -11,13 +10,13 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       on('task', {
         logToTerminal(message) {
-          config.env.logEnabled && console.log(chalk.greenBright(message));
+          config.env.logEnabled && console.log(message);
           return null;
         }
       });
     },
     env: {
-      logEnabled: false,
+      logEnabled: true,
     },
   }
 });
