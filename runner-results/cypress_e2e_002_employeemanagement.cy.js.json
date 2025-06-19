@@ -1,0 +1,10 @@
+{
+  "suites": 1,
+  "tests": 4,
+  "passes": 3,
+  "pending": 0,
+  "failures": 1,
+  "start": "2025-06-19T19:03:58.484Z",
+  "duration": 41882,
+  "file": "cypress\\e2e\\002_employeemanagement.cy.js"
+}

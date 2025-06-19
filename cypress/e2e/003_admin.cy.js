@@ -33,6 +33,9 @@ describe('Admin test cases\n', () => {
     commonmenupage.clickMenuItem(commonmenupage.menuItems.admin);
     ViewSistemUsers.clickAddUserButton();
     CreateUserForm.fillFormFields(employee)
+    //STEP 3: Check the user is displayed in the user list
+    commonmenupage.clickMenuItem(commonmenupage.menuItems.admin);
+    ViewSistemUsers.searchUser(employee);
     //STEP 3: Login with the created account
     commonmenupage.logout();
     loginpage.login({
@@ -55,14 +58,17 @@ describe('Admin test cases\n', () => {
     commonmenupage.clickMenuItem(commonmenupage.menuItems.admin);
     ViewSistemUsers.clickAddUserButton();
     CreateUserForm.fillFormFields(employee)
-    //STEP 3: Login with the created account
+    //STEP 3: Check the user is displayed in the user list
+    commonmenupage.clickMenuItem(commonmenupage.menuItems.admin);
+    ViewSistemUsers.searchUser(employee);
+    //STEP 4: Login with the created account
     commonmenupage.logout();
     loginpage.login({
       username: employee.username,
       password: employee.password
     });
     commonmenupage.checkSuccessfulLogin();
-    //STEP 4: Check that the user has Admin privileges
+    //STEP 3: Check that the user has Admin privileges
   
   });
 
@@ -77,6 +83,9 @@ describe('Admin test cases\n', () => {
     commonmenupage.clickMenuItem(commonmenupage.menuItems.pim);
     viewemployees.clickAddEmployeeButton();
     addemployeeform.fillFormFields(employee); 
+    //STEP 3: Check the user is displayed in the user list
+    commonmenupage.clickMenuItem(commonmenupage.menuItems.admin);
+    ViewSistemUsers.searchUser(employee);
     //STEP 2: Try to login with the created account
     commonmenupage.logout();
     loginpage.login({
@@ -87,16 +96,24 @@ describe('Admin test cases\n', () => {
   });
 
   it('Admin user created with disabled login cant login', () => {
+
     const employee = generateRandomEmployee({
       userRole: userRoles.Admin,
-      createLogin: true,
+      createLogin: false,
       userStatus: userStatuses.Disabled,
     });
 
     //STEP 1: Create employee with disabled login credentials
     commonmenupage.clickMenuItem(commonmenupage.menuItems.pim);
     viewemployees.clickAddEmployeeButton();
-    addemployeeform.fillFormFields(employee); 
+    addemployeeform.fillFormFields(employee);
+    //STEP 2: Create account for the employee, Admin privileges
+    commonmenupage.clickMenuItem(commonmenupage.menuItems.admin);
+    ViewSistemUsers.clickAddUserButton();
+    CreateUserForm.fillFormFields(employee) 
+    //STEP 3: Check the user is displayed in the user list
+    commonmenupage.clickMenuItem(commonmenupage.menuItems.admin);
+    ViewSistemUsers.searchUser(employee);
     //STEP 2: Try to login with the created account
     commonmenupage.logout();
     loginpage.login({
