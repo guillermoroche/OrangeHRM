@@ -18,5 +18,6 @@ module.exports = defineConfig({
     env: {
       logEnabled: true,
     },
+    projectId: '3nnfiv', // Replace with your actual project ID
   }
 });
