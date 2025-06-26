@@ -1,0 +1,7 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+allure-results/
+runner-results/
+cypress/screenshots

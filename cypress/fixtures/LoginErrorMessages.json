@@ -1,0 +1,7 @@
+{
+    "invalidCredentials": "Invalid credentials",
+    "accountDisabled": "Account disabled",
+    "emptyField": "Required",
+    "accountLocked": "Your account has been locked. Please contact administrator.",
+    "sessionExpired": "Your session has expired. Please log in again."
+}
