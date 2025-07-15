@@ -64,7 +64,7 @@ describe('Employee Management Test cases\n', () => {
 
   });
 
-  it.only('Can disable user after creating it', () => {
+  it('Can disable user after creating it', () => {
     let employeeData = generateRandomEmployee({
       createLogin: true,
       loginEnabled: true
